@@ -6,10 +6,11 @@ var triangleThreshold = 300;
 function setup_pScope(pScope){
   pScope.output_mode(ANIMATED_DISK);
   pScope.scale_for_screen(true);
-  pScope.draw_layer_boundaries(false);
+  pScope.draw_layer_boundaries(true);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
   pScope.load_image("greensquare" , "png");
+  pScope.load_image_sequence("eyeball" , "png", 1);
 }
 
 function setup_layers(pScope){
@@ -121,9 +122,15 @@ function triangles(x, y, animation, pScope){
   triangleIncrement = 2;
 }
 
-noStroke();
+noStroke()
 fill(255);
 rotate(180)
 triangle(0, triangleValue * 3.5, -400, 0, 400, 0);
+
+}
+
+function eyeballs(x, y, animation, pScope){
+
+  pScope.draw_image_sequence("greensquare",x,y);
 
 }
