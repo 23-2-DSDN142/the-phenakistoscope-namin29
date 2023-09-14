@@ -9,6 +9,7 @@ function setup_pScope(pScope){
   pScope.draw_layer_boundaries(true);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
+
   pScope.load_image("greensquare" , "png");
   pScope.load_image_sequence("eyeball" , "png", 1);
 }
@@ -39,6 +40,10 @@ function setup_layers(pScope){
 
   var layer1 = new PLayer(square3);
   layer1.mode( SWIRL(6) );
+  layer1.set_boundary( 0, 1500 );
+
+  var layer1 = new PLayer(eyeballs);
+  layer1.mode( RING );
   layer1.set_boundary( 0, 1500 );
 
 }
@@ -131,6 +136,6 @@ triangle(0, triangleValue * 3.5, -400, 0, 400, 0);
 
 function eyeballs(x, y, animation, pScope){
 
-  pScope.draw_image_sequence("greensquare",x,y);
+  pScope.draw_image_sequence("eyeball", x, y, animation.frame);
 
 }
