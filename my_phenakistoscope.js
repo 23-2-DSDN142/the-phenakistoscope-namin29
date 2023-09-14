@@ -1,12 +1,12 @@
 const SLICE_COUNT = 10;
-var triangleValue = -300;
+var triangleValue = -500;
 var triangleIncrement = 2;
 var triangleThreshold = 300;
 
 function setup_pScope(pScope){
   pScope.output_mode(ANIMATED_DISK);
   pScope.scale_for_screen(true);
-  pScope.draw_layer_boundaries(WebTransportDatagramDuplexStream);
+  pScope.draw_layer_boundaries(false);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
   pScope.load_image("greensquare" , "png");
@@ -14,10 +14,10 @@ function setup_pScope(pScope){
 
 function setup_layers(pScope){
 
-  new PLayer(null, 225, 255, 255);  //lets us draw the whole circle background, ignoring the boundaries
+  new PLayer(null, 200, 200, 255);  //lets us draw the whole circle background, ignoring the boundaries // 200, 150, 240
 
   var layer1 = new PLayer(backgroundcolours);
-  layer1.mode( SWIRL(2) );
+  layer1.mode( SWIRL(5) );
   layer1.set_boundary( 50, 1000 );
 
   var layer2 = new PLayer(triangles);
@@ -30,28 +30,28 @@ function setup_layers(pScope){
 
   var layer1 = new PLayer(square1);
   layer1.mode( SWIRL(6) );
-  layer1.set_boundary( 50, 1500 );
+  layer1.set_boundary( 0, 1500 );
 
   var layer1 = new PLayer(square2);
   layer1.mode( SWIRL(6) );
-  layer1.set_boundary( 50, 1500 );
+  layer1.set_boundary( 0, 1500 );
 
   var layer1 = new PLayer(square3);
   layer1.mode( SWIRL(6) );
-  layer1.set_boundary( 50, 1500 );
+  layer1.set_boundary( 0, 1500 );
 
 }
 
 function backgroundcolours(x, y, animation, pScope){
 
-  // this is how you set up a background for a specific layer
-  let angleOffset = (360 / SLICE_COUNT) / 2
-  let backgroundArcStart = 270 - angleOffset;
-  let backgroundArcEnd = 270 + angleOffset;
+  //this is how you set up a background for a specific layer
+//  let angleOffset = (360 / SLICE_COUNT) / 2
+//  let backgroundArcStart = 270 - angleOffset;
+//  let backgroundArcEnd = 270 + angleOffset;
 
-  noStroke();
-  fill(0, 255, 255)
-  arc(x,y,1000,1000,backgroundArcStart,backgroundArcEnd); // draws "pizza slice" in the background
+//  noStroke();
+//  fill(20, 255, 100)
+//  arc(x,y,1000,1000,backgroundArcStart,backgroundArcEnd); // draws "pizza slice" in the background
 
 }
 
@@ -68,9 +68,9 @@ function square1(x, y, animation, pScope){
   rotate(45);
   scale(animation.frame*3.6);
   noStroke();
-  const c = color(255, 255, 0, 80);
+  const c = color(100, 255, 100, 150);
   fill(c);
-  rect(30, 30, 100, 100);
+  rect(30, 30, 80, 150);
   // Sets 'alphaValue' to 102.
   const alphaValue = alpha(c);
   fill(alphaValue);
@@ -82,9 +82,9 @@ function square2(x, y, animation, pScope){
   rotate(45);
   scale(animation.frame*3.7);
   noStroke();
-  const c = color(255, 0, 255, 80);
+  const c = color(200, 55, 255, 150);
   fill(c);
-  rect(0, 0, 100, 100);
+  rect(0, 0, 80, 150);
   // Sets 'alphaValue' to 102.
   const alphaValue = alpha(c);
   fill(alphaValue);
@@ -96,9 +96,9 @@ function square3(x, y, animation, pScope){
   rotate(45);
   scale(animation.frame*3.8);
   noStroke();
-  const c = color(0, 255, 255, 80);
+  const c = color(55, 255, 200, 150);
   fill(c);
-  rect(-30, -30, 100, 100);
+  rect(-30, -30, 80, 150);
   // Sets 'alphaValue' to 102.
   const alphaValue = alpha(c);
   fill(alphaValue);
@@ -116,7 +116,7 @@ function triangles(x, y, animation, pScope){
  if (triangleValue >= triangleThreshold) {
   
   triangleIncrement = -2;
-} else if (triangleValue <= -300) {
+} else if (triangleValue <= -500) {
   
   triangleIncrement = 2;
 }
@@ -124,6 +124,6 @@ function triangles(x, y, animation, pScope){
 noStroke();
 fill(255);
 rotate(180)
-triangle(0, triangleValue * 3.5, -500, 0, 500, 0);
+triangle(0, triangleValue * 3.5, -400, 0, 400, 0);
 
 }
