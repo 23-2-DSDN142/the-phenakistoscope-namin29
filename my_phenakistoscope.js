@@ -74,7 +74,7 @@ function square1(x, y, animation, pScope){
   rotate(45);
   scale(animation.frame*10);
   noStroke();
-  const c = color(70, 190, 90, 255);
+  const c = color(90, 210, 120, 255);
   fill(c);
   rect(30, 30, 40, 40);
   // Sets 'alphaValue' to 102.
@@ -134,7 +134,7 @@ triangle(0, triangleValue * 3.5, -100, 0, 100, 0);
 }
 
 function eyeballs(x, y, animation, pScope){
-  scale(1.52)
-  pScope.draw_image_from_sequence("eyeball", x, -490, animation.frame);
+  scale(1.50)
+  pScope.draw_image_from_sequence("eyeball", x, -480, animation.frame);
 
 }
