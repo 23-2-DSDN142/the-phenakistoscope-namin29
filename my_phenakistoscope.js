@@ -1,22 +1,22 @@
-const SLICE_COUNT = 10;
-var triangleValue = -500;
-var triangleIncrement = 2;
+const SLICE_COUNT = 16;
+var triangleValue = 100;
+var triangleIncrement = 1;
 var triangleThreshold = 300;
 
 function setup_pScope(pScope){
   pScope.output_mode(ANIMATED_DISK);
   pScope.scale_for_screen(true);
-  pScope.draw_layer_boundaries(true);
+  pScope.draw_layer_boundaries(false);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
 
   pScope.load_image("greensquare" , "png");
-  pScope.load_image_sequence("eyeball" , "png", 1);
+  pScope.load_image_sequence("eyeball" , "png", 8);
 }
 
 function setup_layers(pScope){
 
-  new PLayer(null, 200, 200, 255);  //lets us draw the whole circle background, ignoring the boundaries // 200, 150, 240
+  new PLayer(null, 220,145,220);  //lets us draw the whole circle background, ignoring the boundaries // 200, 150, 240
 
   var layer1 = new PLayer(backgroundcolours);
   layer1.mode( SWIRL(5) );
@@ -31,16 +31,16 @@ function setup_layers(pScope){
   layer1.set_boundary( 500, 1000 );
 
   var layer1 = new PLayer(square1);
-  layer1.mode( SWIRL(6) );
-  layer1.set_boundary( 0, 1500 );
+  layer1.mode( SWIRL(10) );
+  layer1.set_boundary( 0, 1800 );
 
   var layer1 = new PLayer(square2);
-  layer1.mode( SWIRL(6) );
-  layer1.set_boundary( 0, 1500 );
+  layer1.mode( SWIRL(10) );
+  layer1.set_boundary( 0, 1800 );
 
   var layer1 = new PLayer(square3);
-  layer1.mode( SWIRL(6) );
-  layer1.set_boundary( 0, 1500 );
+  layer1.mode( SWIRL(10) );
+  layer1.set_boundary( 0, 1800 );
 
   var layer1 = new PLayer(eyeballs);
   layer1.mode( RING );
@@ -72,11 +72,11 @@ function greenSquares(x, y, animation, pScope){
 function square1(x, y, animation, pScope){
 
   rotate(45);
-  scale(animation.frame*3.6);
+  scale(animation.frame*10);
   noStroke();
-  const c = color(100, 255, 100, 150);
+  const c = color(70, 190, 90, 255);
   fill(c);
-  rect(30, 30, 80, 150);
+  rect(30, 30, 40, 40);
   // Sets 'alphaValue' to 102.
   const alphaValue = alpha(c);
   fill(alphaValue);
@@ -86,11 +86,11 @@ function square1(x, y, animation, pScope){
 function square2(x, y, animation, pScope){
 
   rotate(45);
-  scale(animation.frame*3.7);
+  scale(animation.frame*10);
   noStroke();
   const c = color(200, 55, 255, 150);
   fill(c);
-  rect(0, 0, 80, 150);
+  rect(0, 0, 35, 35);
   // Sets 'alphaValue' to 102.
   const alphaValue = alpha(c);
   fill(alphaValue);
@@ -100,11 +100,11 @@ function square2(x, y, animation, pScope){
 function square3(x, y, animation, pScope){
 
   rotate(45);
-  scale(animation.frame*3.8);
+  scale(animation.frame*10);
   noStroke();
-  const c = color(55, 255, 200, 150);
+  const c = color(55, 0, 100, 150);
   fill(c);
-  rect(-30, -30, 80, 150);
+  rect(-30, -30, 20, 20);
   // Sets 'alphaValue' to 102.
   const alphaValue = alpha(c);
   fill(alphaValue);
@@ -121,21 +121,20 @@ function triangles(x, y, animation, pScope){
 
  if (triangleValue >= triangleThreshold) {
   
-  triangleIncrement = -2;
-} else if (triangleValue <= -500) {
+  triangleIncrement = -1;
+} else if (triangleValue <= 100) {
   
-  triangleIncrement = 2;
+  triangleIncrement = 1;
 }
-
 noStroke()
-fill(255);
+fill(225, 255, 255);
 rotate(180)
-triangle(0, triangleValue * 3.5, -400, 0, 400, 0);
+triangle(0, triangleValue * 3.5, -100, 0, 100, 0);
 
 }
 
 function eyeballs(x, y, animation, pScope){
-
-  pScope.draw_image_sequence("eyeball", x, y, animation.frame);
+  scale(1.52)
+  pScope.draw_image_from_sequence("eyeball", x, -490, animation.frame);
 
 }
